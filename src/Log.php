@@ -19,30 +19,24 @@ class Log {
     if(!in_array($name,self::$logs)){
       $log = new Log();
       $log->writer = new Writer();
-      $config = $log->getConfig($name=='default'?null:$name);
+      $config = $log->getConfig($name=='default'?config("log4l.default","default"):$name);
       $method = "use".ucfirst(strtolower($config['mode']))."Files";
       $log->{$method}($config['logpath'],$config['level'],$config['formatter']);
     }
     return self::$logs[$name];
   }
 
-  private function getConfig($name = null){
-    if($name != null){
-      $dateFormat = config('log4l.'.$name.'.dateFormat');
-      $outputFormat = config('log4l.'.$name.'.outputFormat');
-      $formatter = new LineFormatter($outputFormat, $dateFormat, false, false);
-      return [
-        'formatter' => $formatter,
-        'level' => config('log4l.'.$name.'.level'),
-        'mode'  => config('log4l.'.$name.'.mode'),
-        'logpath' => config('log4l.'.$name.'.logpath')
-      ];
-    }
+  private function getConfig($name){
+    $dateFormat = config("log4l.dateFormat",config('log4l.'.$name.'.dateFormat',null));
+    $outputFormat = config("log4l.outputFormat",config('log4l.'.$name.'.outputFormat',null));
+    $level = config("log4l.level",config('log4l.'.$name.'.level','debug'));
+    $mode = config("log4l.mode",config('log4l.'.$name.'.mode','single'));
+    $logpath = config("log4l.logpath",config('log4l.'.$name.'.logpath',storage_path()."/logs/laravel.log"));
     return [
-      'formatter' => new LineFormatter(null, null, true, true),
-      'level'     => 'debug',
-      'mode'      => 'single',
-      'logpath'   => storage_path()."/logs/laravel.log"
+      'formatter' => new LineFormatter($outputFormat, $dateFormat, false, false),
+      'level'     => $level,
+      'mode'      => $mode,
+      'logpath'   => $logpath
     ];
   }
 
