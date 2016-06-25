@@ -45,18 +45,6 @@ class Log {
     ];
   }
 
-//  public function config($config = null){
-//    $log = self::instance($config);
-//    if($config != null){
-//      $log->dateFormat = config("log4l.{$config}.dateFormat");
-//      $log->outputFormat = config("log4l.{$config}.outputFormat");
-//      $log->$logpath = config("log4l.{$config}.file");
-//      $log->writer = new Writer();
-//      $log->writer->useDailyFiles(config("log4l.{$config}.file"),5,'debug',)
-//    }
-//    return $log;
-//  }
-
   public function __call($method,$parameters){
     return call_user_func_array([$this->writer, $method], $parameters);
   }
