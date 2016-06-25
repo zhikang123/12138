@@ -20,6 +20,7 @@ kxutils/log4l
 composer install
 ```
 
+### 1.4 剩余操作
 拷贝`log4l.php.example`文件到`app/config`中,并把文件改名为`log4l.php`
 
 
