@@ -21,7 +21,8 @@ class Log {
       $log->writer = new Writer();
       $config = $log->getConfig($name=='default'?config("log4l.default","default"):$name);
       $method = "use".ucfirst(strtolower($config['mode']))."Files";
-      $log->{$method}($config['logpath'],$config['level'],$config['formatter']);
+      $log->writer->{$method}($config['logpath'],$config['level'],$config['formatter']);
+      self::$logs[$name] = $log;
     }
     return self::$logs[$name];
   }

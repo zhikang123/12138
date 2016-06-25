@@ -86,7 +86,7 @@ class Writer {
   }
 
   private function parseLevel($level){
-    if(in_array($level,$this->levels)) return $level;
+    if(array_key_exists($level,$this->levels)) return $this->levels[$level];
     throw new InvalidArgumentException('无效的日志级别');
   }
 }
