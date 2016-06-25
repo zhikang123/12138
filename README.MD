@@ -3,6 +3,7 @@
 ### 1.1 require标签增加
 ```php
 kxutils/log4l
+```
 
 ### 1.2 增加repositories标签(如果没有),并增加
 ```php
@@ -12,10 +13,12 @@ kxutils/log4l
     "url":"git@git.7color.net.cn:lib/log4l.git"
 }
 ]
+```
 
 ### 1.3 更新
 ```sh
 composer install
+```
 
 拷贝`log4l.php.example`文件到`app/config`中,并把文件改名为`log4l.php`
 
@@ -35,3 +38,4 @@ Log::error($msg);
 'critical'  => Logger::CRITICAL,
 'alert'     => Logger::ALERT,
 'emergency' => Logger::EMERGENCY,
+```
