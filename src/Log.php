@@ -5,7 +5,7 @@
  * Date: 2016/6/24
  * Time: 20:04
  */
-namespace log4l;
+namespace Log4l;
 use Monolog\Formatter\LineFormatter;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;

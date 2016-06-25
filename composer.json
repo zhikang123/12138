@@ -1,0 +1,16 @@
+{
+    "name": "kxutils/log4l",
+    "description": "laravel通用日志,可自定义日志路径",
+    "type": "library",
+    "require": {
+        "php": ">=5.5.9"
+    },
+    "license": "BSD",
+    "authors": [
+        {
+            "name": "七彩时空",
+            "email": "dev@uqian.me"
+        }
+    ],
+    "minimum-stability": "stable"
+}
