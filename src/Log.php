@@ -41,7 +41,8 @@ class Log {
     return [
       'formatter' => new LineFormatter(null, null, true, true),
       'level'     => 'debug',
-      'mode'      => 'single'
+      'mode'      => 'single',
+      'logpath'   => storage_path()."/logs/laravel.log"
     ];
   }
 
