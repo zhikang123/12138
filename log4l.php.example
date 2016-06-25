@@ -1,17 +1,20 @@
 <?php
 
 return [
+    //全局配置
+    'dateFormat' => "Y-m-d H:i:s",  //时间格式'outputFormat' => "[%datetime%] %channel%.%level_name%: %message% %context% %extra%\n", //日志格式
+    'logpath' => '/var/log/php/project-laravel.log',
+    'mode' => 'daily',
+    'level' => 'debug',
+    //默认配置指定
+    'default' => 'test',
+//    默认配置定义
+//    'default' =>[
+//        'logpath' => '/var/log/php/project-laravel.log',
+//    ],
 
-  'dateFormat' => "Y-m-d H:i:s",  //时间格式
-    'outputFormat' => "[%datetime%] %channel%.%level_name%: %message% %context% %extra%\n", //日志格式
-
-  'userLog' => [
-      //'file' => '/var/log/php/user.log',
-          'dateFormat' => 'Y n j, g:i a'
-            ],
-
-  'goodsLog' => [
-      'file' => '/var/log/php/goods.log'
-        ],
+    'test' => [
+        'logpath' => '/var/log/php/test.log'
+    ],
 
 ];

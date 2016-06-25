@@ -15,7 +15,7 @@ class Log {
   private static $logs = [];
   private $writer;
 
-  public static function instance($name = "default"){
+  public static function conn($name = "default"){
     if(!in_array($name,self::$logs)){
       $log = new Log();
       $log->writer = new Writer();
@@ -46,6 +46,6 @@ class Log {
   }
 
   public static function __callStatic($method,$parameters){
-    return call_user_func_array([Log::instance(), $method], $parameters);
+    return call_user_func_array([Log::conn(), $method], $parameters);
   }
 }

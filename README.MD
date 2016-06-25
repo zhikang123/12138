@@ -17,7 +17,7 @@ kxutils/log4l
 
 ### 1.3 更新
 ```sh
-composer install
+composer install 或者 composer update
 ```
 
 ### 1.4 剩余操作
@@ -27,8 +27,11 @@ composer install
 # 使用方法
 ```php
 use Log4l\Log;
+// 默认调用方式
 Log::info($msg);
 Log::error($msg);
+//配置路径调用方式
+Log::conn("test")->info($msg);
 
 //其他能用方法有:
 'debug'     => Logger::DEBUG,
