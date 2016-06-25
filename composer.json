@@ -12,5 +12,10 @@
             "email": "dev@uqian.me"
         }
     ],
-    "minimum-stability": "stable"
+    "minimum-stability": "stable",
+    "autoload": {
+      "psr-4": {
+        "Log4l\\": "src/"
+      }
+    }
 }
