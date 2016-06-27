@@ -73,9 +73,9 @@ class Writer {
     $handler->setFormatter($formatter ? $formatter : $this->getDefaultFormatter());
   }
 
-  public function useDailyFiles($path, $days = 0, $level = 'debug',$formatter = null){
+  public function useDailyFiles($path, $level = 'debug',$formatter = null){
     $this->monolog->pushHandler(
-      $handler = new RotatingFileHandler($path, $days, $this->parseLevel($level))
+      $handler = new RotatingFileHandler($path, 0, $this->parseLevel($level))
     );
 
     $handler->setFormatter($formatter ? $formatter : $this->getDefaultFormatter());
