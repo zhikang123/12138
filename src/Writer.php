@@ -20,14 +20,14 @@ class Writer {
   private $monolog;
 
   private $levels = [
-    'debug'     => Logger::DEBUG,
-    'info'      => Logger::INFO,
-    'notice'    => Logger::NOTICE,
-    'warning'   => Logger::WARNING,
-    'error'     => Logger::ERROR,
-    'critical'  => Logger::CRITICAL,
-    'alert'     => Logger::ALERT,
-    'emergency' => Logger::EMERGENCY,
+      'debug'     => Logger::DEBUG,
+      'info'      => Logger::INFO,
+      'notice'    => Logger::NOTICE,
+      'warning'   => Logger::WARNING,
+      'error'     => Logger::ERROR,
+      'critical'  => Logger::CRITICAL,
+      'alert'     => Logger::ALERT,
+      'emergency' => Logger::EMERGENCY,
   ];
 
   public function __construct($name = "log4l")
@@ -68,12 +68,7 @@ class Writer {
   }
 
   public function writeLog($level, $message, $context){
-    $str = '-:-:';
-    try{
-      $str = debug_backtrace()[8]['class'].':'.debug_backtrace()[7]['line'];
-    }finally{
-      return $this->monolog->{$level}($message,$context);
-    }
+    return $this->monolog->{$level}($message,$context);
   }
 
   public function useSingleFiles($path, $level = 'debug',$formatter = null){
@@ -84,7 +79,7 @@ class Writer {
 
   public function useDailyFiles($path, $level = 'debug',$formatter = null){
     $this->monolog->pushHandler(
-      $handler = new RotatingFileHandler($path, 0, $this->parseLevel($level))
+        $handler = new RotatingFileHandler($path, 0, $this->parseLevel($level))
     );
 
     $handler->setFormatter($formatter ? $formatter : $this->getDefaultFormatter());

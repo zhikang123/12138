@@ -11,15 +11,20 @@ use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
 class Log {
-
   private static $logs = [];
   private $writer;
+  private $location;
 
-  public static function conn($name = "default"){
+  public function __construct($location='')
+  {
+    $this->location = $location;
+  }
+
+  public static function __conn($name = "default",$location=''){
     if(!in_array($name,self::$logs)){
-      $log = new Log();
+      $log = new Log($location);
       $log->writer = new Writer();
-      //      $config = $log->getConfig($name=='default'?config("log4l.default","default"):$name);
+      //    $config = $log->getConfig($name=='default'?config("log4l.default","default"):$name);
       $config = $log->getConfig($name=='default'?"default":$name);
       $method = "use".ucfirst(strtolower($config['mode']))."Files";
       $log->writer->{$method}($config['logpath'],$config['level'],$config['formatter']);
@@ -51,10 +56,17 @@ class Log {
   }
 
   public function __call($method,$parameters){
+    $parameters[0]=($this->location).$parameters[0];
     return call_user_func_array([$this->writer, $method], $parameters);
   }
 
   public static function __callStatic($method,$parameters){
-    return call_user_func_array([Log::conn(), $method], $parameters);
+    $location = debug_backtrace()[2]['class'].':'.debug_backtrace()[1]['line'].':';
+    if($method==='conn'){
+      return Log::__conn($parameters[0],$location);
+    }else{
+      return call_user_func_array([Log::__conn('default',$location), $method], $parameters);
+    }
+
   }
 }
