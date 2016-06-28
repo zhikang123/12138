@@ -51,6 +51,10 @@ class Writer {
     return $this->writeLog(__FUNCTION__,$message,$context);
   }
 
+  public function error($message, array $context = []){
+    return $this->writeLog(__FUNCTION__,$message,$context);
+  }
+
   public function critical($message, array $context = []){
     return $this->writeLog(__FUNCTION__,$message,$context);
   }
@@ -64,7 +68,12 @@ class Writer {
   }
 
   public function writeLog($level, $message, $context){
-    return $this->monolog->{$level}($message,$context);
+    $str = '-:-:';
+    try{
+      $str = debug_backtrace()[8]['class'].':'.debug_backtrace()[7]['line'];
+    }finally{
+      return $this->monolog->{$level}($message,$context);
+    }
   }
 
   public function useSingleFiles($path, $level = 'debug',$formatter = null){
