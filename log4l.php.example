@@ -17,3 +17,28 @@ return [
     ],
 
 ];
+
+//<?php
+// Log文件注释掉的部分的配置方法
+//return [
+//  //全局配置
+//    'dateFormat' => "Y-m-d H:i:s",  //时间格式
+//    'outputFormat' => "[%datetime%] %channel%.%level_name%: %message% %context% %extra%\n", //日志格式
+//    'logpath' => '/var/log/php/project-laravel.log',
+//    'mode' => 'single',
+//    'level' => 'debug'
+//
+//    'default'=>'test',
+//
+//    'test' => [
+//          'dateFormat' => "Y-m-d H:i:s",
+//          'logpath' => '/var/log/php/laravel.log',
+//          'mode' => 'single',
+//          'level' => 'debug'
+//    ],
+//    'pushLog' => [
+//          'logpath' => '/var/log/php/push.log',
+//          'mode' => 'daily',
+//          'level' => 'debug'
+//    ],
+//];
